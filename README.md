@@ -11,17 +11,19 @@ Uma ferramenta rápida e de fácil uso que gera senhas fortes de forma automatiz
 ### Público-Alvo
 Pessoas idosas, usuários leigos de tecnologia ou qualquer pessoa que precise criar uma senha forte rapidamente para proteger suas contas online
 
-## Funcionalidades Principais
- Geração de senhas contendo letras (maiúsculas e minúsculas), números e símbolos
- Escolha personalizada do tamanho da senha
- Validação contra entradas inválidas (tamanhos negativos)
- Uso da biblioteca `secrets` para geração das senhas
+### Funcionalidades Principais
 
-## Tecnologias Utilizadas
-Linguagem: Python
-Testes Automatizados: `pytest`
-Análise Estática (Linting): `flake8`
-Integração Contínua (CI): GitHub Actions
+* Geração de senhas contendo letras (maiúsculas e minúsculas), números e símbolos.
+* Escolha personalizada do tamanho da senha.
+* Validação contra entradas inválidas (tamanhos negativos).
+* Uso da biblioteca nativa `secrets` para geração criptograficamente segura.
+
+### Tecnologias Utilizadas
+
+* **Linguagem:** Python
+* **Testes Automatizados:** `pytest`
+* **Análise Estática (Linting):** `flake8`
+* **Integração Contínua (CI):** GitHub Actions
 
 ## Como Executar o Projeto
 
