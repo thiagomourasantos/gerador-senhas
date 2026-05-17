@@ -24,7 +24,6 @@ def test_gerar_senha_tamanho_minimo():
     """Testa o menor tamanho possível para uma senha"""
     senha = gerar_senha(1)
     assert len(senha) == 1
-    
 
 
 def test_gerar_passphrase_com_sucesso(monkeypatch):
@@ -40,7 +39,7 @@ def test_gerar_passphrase_com_sucesso(monkeypatch):
 
 
 def test_gerar_passphrase_com_falha_da_api(monkeypatch):
-    """Testa o fallback seguro quando a API retorna erro"""
+    """Testa o fallback seguro quando a API retorna erro (ex: 500)"""
     mock_resposta = MagicMock()
     mock_resposta.status_code = 500
 

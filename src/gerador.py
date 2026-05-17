@@ -11,7 +11,7 @@ def gerar_senha(tamanho: int) -> str:
     # Junta letras maiúsculas/minúsculas, números e caracteres especiais
     caracteres = string.ascii_letters + string.digits + string.punctuation
 
-    # Sorteia os caracteres 
+    # Sorteia os caracteres de forma criptograficamente segura
     senha = ''.join(secrets.choice(caracteres) for _ in range(tamanho))
     return senha
 
@@ -29,6 +29,7 @@ def gerar_passphrase_da_api() -> str:
         else:
             return "erro-na-api-tente-novamente"
     except requests.exceptions.RequestException:
+        # Fallback usando 100% secrets (sem precisar do módulo random)
         sufixo = "".join(
             secrets.choice(string.ascii_lowercase) for _ in range(10)
         )
