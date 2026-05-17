@@ -11,7 +11,7 @@ def gerar_senha(tamanho: int) -> str:
     # Junta letras maiúsculas/minúsculas, números e caracteres especiais
     caracteres = string.ascii_letters + string.digits + string.punctuation
 
-    # Sorteia os caracteres
+    # Sorteia os caracteres 
     senha = ''.join(secrets.choice(caracteres) for _ in range(tamanho))
     return senha
 
@@ -19,7 +19,7 @@ def gerar_senha(tamanho: int) -> str:
 def gerar_passphrase_da_api() -> str:
     """Busca 3 palavras aleatórias de uma API pública para gerar uma senha"""
     url = "https://random-word-api.herokuapp.com/word?number=3"
-    
+
     try:
         resposta = requests.get(url, timeout=5)
         if resposta.status_code == 200:
@@ -29,8 +29,10 @@ def gerar_passphrase_da_api() -> str:
         else:
             return "erro-na-api-tente-novamente"
     except requests.exceptions.RequestException:
-        sufixo_seguro = "".join(secrets.choice(string.ascii_lowercase) for _ in range(10))
-        return "sem-conexao-" + sufixo_seguro
+        sufixo = "".join(
+            secrets.choice(string.ascii_lowercase) for _ in range(10)
+        )
+        return "sem-conexao-" + sufixo
 
 
 def main():
@@ -38,7 +40,7 @@ def main():
     print("Proteja-se online criando senhas fortes!\n")
     print("1. Gerar senha por tamanho (letras, números, símbolos)")
     print("2. Gerar Passphrase (palavras aleatórias via API externa)")
-    
+
     escolha = input("\nEscolha uma opção (1 ou 2): ")
 
     if escolha == '1':
@@ -52,12 +54,12 @@ def main():
         except ValueError:
             msg = "Erro: insira um número inteiro válido e maior que zero."
             print(f"\n{msg}")
-            
+
     elif escolha == '2':
         print("\nA gerar a sua nova senha segura...")
         senha = gerar_passphrase_da_api()
         print(f"Sua passphrase é: {senha}")
-        
+
     else:
         print("\nOpção inválida. Por favor, escolha 1 ou 2.")
 
