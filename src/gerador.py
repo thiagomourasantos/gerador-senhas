@@ -18,7 +18,9 @@ class PasswordGenerator:
     def gerar_senha(tamanho: int) -> str:
         """Gera senha com letras, números e símbolos"""
         if tamanho <= 0:
-            raise ValueError("Tamanho deve ser > 0")
+            raise ValueError(
+                "O tamanho da senha deve ser maior que zero"
+            )
 
         caracteres = (
             string.ascii_letters
@@ -100,3 +102,13 @@ class PasswordGenerator:
         except Exception as e:
             print(f"❌ Erro: {e}")
             return []
+
+
+def gerar_senha(tamanho: int) -> str:
+    """Compatibilidade com os testes"""
+    return PasswordGenerator.gerar_senha(tamanho)
+
+
+def gerar_passphrase_da_api() -> str:
+    """Compatibilidade com os testes"""
+    return PasswordGenerator.gerar_passphrase_da_api()
