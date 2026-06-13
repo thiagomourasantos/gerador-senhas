@@ -1,5 +1,6 @@
 from src.gerador import PasswordGenerator
 
+
 def test_salvar_senha_sucesso(mock_user_id, mock_supabase):
     """Testa salvamento de senha no BD"""
     mock_supa = mock_supabase.return_value.table.return_value.insert

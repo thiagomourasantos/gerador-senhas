@@ -32,8 +32,10 @@ class TokenResponse(BaseModel):
 def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
+
 def verify_password(plain: str, hashed: str) -> bool:
     return pwd_context.verify(plain, hashed)
+
 
 def create_access_token(
             user_id: str, email: str, expires_delta: Optional[timedelta] = None
@@ -43,7 +45,7 @@ def create_access_token(
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(hours=24)
-    
+
     to_encode.update({"exp": expire})
     
     return jwt.encode(

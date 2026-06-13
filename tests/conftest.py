@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import patch
 
+
 @pytest.fixture
 def mock_user_id():
     return "test-user-123"

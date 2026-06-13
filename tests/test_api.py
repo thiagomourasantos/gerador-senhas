@@ -3,6 +3,7 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_gerar_senha_endpoint():
     """Testa endpoint GET /gerar-senha"""
     response = client.post("/api/gerar-senha", json={"tamanho": 12})
