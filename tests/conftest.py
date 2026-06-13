@@ -1,18 +1,21 @@
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 @pytest.fixture
 def mock_user_id():
     return "test-user-123"
 
+
 @pytest.fixture
 def mock_user_email():
     return "test@example.com"
+
 
 @pytest.fixture
 def mock_supabase():
     with patch('src.gerador.get_supabase') as mock:
         yield mock
+
 
 @pytest.fixture
 def test_token():
