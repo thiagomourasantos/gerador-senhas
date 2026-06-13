@@ -29,5 +29,8 @@ jobs:
         flake8 src/ tests/
         
     - name: Testes Automatizados
-      run: |
-        python -m pytest
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: |
+          python -m pytest
