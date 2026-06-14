@@ -1,12 +1,12 @@
 import pytest
 from fastapi.testclient import TestClient
 from fastapi import HTTPException
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials
 from main import app
 from src.auth import (
-    hash_password, 
-    verify_password, 
-    create_access_token, 
+    hash_password,
+    verify_password,
+    create_access_token,
     get_current_user
 )
 
@@ -41,11 +41,15 @@ def test_gerar_senha_tamanho_invalido():
     assert response.status_code == 400
 
 
+# =====================================================================
+# TESTES DE AUTENTICAÇÃO
+# =====================================================================
+
 def test_hash_e_verificacao_de_senha():
-    """Testa se a senha está sendo criptografada e verificada corretamente"""
+    """Testa se a senha está sendo criptografada corretamente"""
     senha_pura = "minha_senha_123"
     senha_criptografada = hash_password(senha_pura)
-    
+
     assert senha_criptografada != senha_pura
     assert verify_password(senha_pura, senha_criptografada) is True
     assert verify_password("senha_errada", senha_criptografada) is False
@@ -61,9 +65,13 @@ def test_criacao_do_token_jwt():
 @pytest.mark.asyncio
 async def test_get_current_user_valido():
     """Testa se consegue extrair o user_id com um token válido"""
-    token_valido = create_access_token(user_id="thiago_id", email="thiago@example.com")
-    credenciais = HTTPAuthorizationCredentials(scheme="Bearer", credentials=token_valido)
-    
+    token_valido = create_access_token(
+        user_id="thiago_id", email="thiago@example.com"
+    )
+    credenciais = HTTPAuthorizationCredentials(
+        scheme="Bearer", credentials=token_valido
+    )
+
     user_id = await get_current_user(credentials=credenciais)
     assert user_id == "thiago_id"
 
@@ -71,9 +79,11 @@ async def test_get_current_user_valido():
 @pytest.mark.asyncio
 async def test_get_current_user_invalido():
     """Testa se dá erro 401 ao passar um token totalmente quebrado"""
-    credenciais_ruins = HTTPAuthorizationCredentials(scheme="Bearer", credentials="token_completamente_errado")
-    
+    credenciais_ruins = HTTPAuthorizationCredentials(
+        scheme="Bearer", credentials="token_completamente_errado"
+    )
+
     with pytest.raises(HTTPException) as exc_info:
         await get_current_user(credentials=credenciais_ruins)
-    
+
     assert exc_info.value.status_code == 401
