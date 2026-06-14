@@ -36,3 +36,5 @@ Ter o Python 3 instalado em sua máquina.
 ### 1. Clonar o repositório
 ```bash
 git clone [https://github.com/thiagomourasantos/gerador-senhas.git](https://github.com/thiagomourasantos/gerador-senhas.git)
+````
+Testes da API e Autenticação JWT desenvolvidos
